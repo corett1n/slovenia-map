@@ -191,24 +191,6 @@
       font-size: 1.35rem;
     }
 
-    .stat #scorePercentage {
-      display: block;
-      font-size: 0.65rem;
-      font-weight: 600;
-      margin-top: 3px;
-      transition: color 0.3s ease;
-    }
-
-    .stat #scorePercentage.low {
-      color: var(--danger);
-      /* Red */
-    }
-
-    .stat #scorePercentage.high {
-      color: var(--accent);
-      /* Green */
-    }
-
     #timer {
       transition: color .2s;
     }
@@ -579,8 +561,8 @@
       <div class="panel rules-card">
         <h2>🎮 Pravila igre</h2>
         <p class="rules-intro">
-          Na podlagi imena mesta in njegova grba označi njegovo lokacijo na zemljevidu. Če dosežeš dovolj dober
-          rezultat, te na koncu časa posebna nagrada.
+          Na podlagi imena mesta in njegovega grba označi njegovo lokacijo na zemljevidu. Če dosežeš dovolj dober
+          rezultat, te na koncu čaka posebna nagrada.
         </p>
 
         <div class="rule">
@@ -603,7 +585,7 @@
           <div class="rule-icon">🏆</div>
           <div>
             <h3>3. Doseži točke</h3>
-            <p>Vsaka runda je vredna največ 100 točk. Bližje kot boš dejanski lokaciji mesta, tem več točk boš dosegla.
+            <p>Vsaka runda je vredna največ 100 točk. Bližje kot boš dejanski lokaciji mesta, več točk boš dosegla.
             </p>
           </div>
         </div>
@@ -647,7 +629,6 @@
           <div class="stat">
             <small>🏆 Skupne točke</small>
             <strong id="score">0</strong>
-            <span id="scorePercentage" class="score-percentage"></span>
           </div>
           <div class="stat">
             <small>🎯 Runda</small>
@@ -1032,10 +1013,7 @@
       $("finish").style.display = "none";
       $("game").hidden = false;
 
-      $("score").textContent = "0 / 0";
-
-      $("scorePercentage").textContent = "0%";
-      $("scorePercentage").className = "low";
+      $("score").textContent = "0" + " / " + (TOTAL_ROUNDS * POINTS_PER_ROUND).toLocaleString();
       $("finalCard").style.display = "none";
 
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1155,7 +1133,7 @@
 
     function calculatePoints(distance) {
       return Math.round(
-        POINTS_PER_ROUND * Math.max(0, 1 - distance / 150)
+        POINTS_PER_ROUND * Math.max(0, 1 - distance / 140)
       );
     }
 
@@ -1221,16 +1199,7 @@
       const points = calculatePoints(distance);
       score += points;
 
-      // Update the maximum possible points only after this round is answered.
-      const availablePoints = (currentIndex + 1) * POINTS_PER_ROUND;
-      $("score").textContent =
-        `${score.toLocaleString()} / ${availablePoints.toLocaleString()}`;
-
-      const percentage = Math.round(score / availablePoints * 100);
-
-      $("scorePercentage").textContent = `${percentage}%`;
-      $("scorePercentage").className =
-        percentage >= 90 ? "high" : "low";
+      $("score").textContent = score.toLocaleString() + " / " + (TOTAL_ROUNDS * POINTS_PER_ROUND).toLocaleString();
 
       revealAnswer(city);
 
@@ -1254,17 +1223,6 @@
       timerInterval = null;
       answered = true;
       secondsLeft = 0;
-
-      // A timed-out round still counts towards the available points.
-      const availablePoints = (currentIndex + 1) * POINTS_PER_ROUND;
-      $("score").textContent =
-        `${score.toLocaleString()} / ${availablePoints.toLocaleString()}`;
-
-      const percentage = Math.round(score / availablePoints * 100);
-
-      $("scorePercentage").textContent = `${percentage}%`;
-      $("scorePercentage").className =
-        percentage >= 90 ? "high" : "low";
 
       const city = rounds[currentIndex];
 
