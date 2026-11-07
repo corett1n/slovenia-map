@@ -619,7 +619,7 @@
 
           <div class="map-wrap" id="mapWrap">
             <img id="map"
-              src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Slovenia_location_map.svg/3840px-Slovenia_location_map.svg.png"
+              src="zemljevid.jpeg"
               alt="Map of Slovenia" draggable="false">
           </div>
 
@@ -688,16 +688,24 @@
     const FINAL_CARD_THRESHOLD = TOTAL_ROUNDS * POINTS_PER_ROUND * 0.90; // 90% of total possible points
     const AUTO_NEXT_DELAY = 5000;
 
+    // Approximate geographic bounds; calibrate for the exact map image.
+    const MAP_BOUNDS = {
+      north: 46.971006,
+      south: 45.304395,
+      west: 13.173764,
+      east: 16.713659
+    };
+
     const CITIES = [
-      {
-        name: "Ljubljana",
-        lat: 46.0569, lon: 14.5058,
-        coatOfArms: "./img/grb-ljubljana.png"
-      },
       {
         name: "Maribor",
         lat: 46.5547, lon: 15.6459,
         coatOfArms: "./img/grb-maribor.png"
+      },
+      {
+        name: "Ljubljana",
+        lat: 46.0569, lon: 14.5058,
+        coatOfArms: "./img/grb-ljubljana.png"
       },
       {
         name: "Koper",
@@ -960,14 +968,6 @@
         coatOfArms: "./img/grb-cerknica.png"
       }
     ];
-
-    // Approximate geographic bounds; calibrate for the exact map image.
-    const MAP_BOUNDS = {
-      north: 47.1,
-      south: 45.2,
-      west: 13.2,
-      east: 16.8
-    };
 
     const $ = id => document.getElementById(id);
 
