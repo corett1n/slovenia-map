@@ -618,9 +618,7 @@
           </p>
 
           <div class="map-wrap" id="mapWrap">
-            <img id="map"
-              src="./img/map.jpeg"
-              alt="Map of Slovenia" draggable="false">
+            <img id="map" src="./img/map.jpeg" alt="Map of Slovenia" draggable="false">
           </div>
 
         </main>
@@ -682,7 +680,7 @@
   </div>
 
   <script>
-    const TOTAL_ROUNDS = 54;
+    const TOTAL_ROUNDS = 65;
     const POINTS_PER_ROUND = 100;
     const ROUND_TIME = 15;
     const FINAL_CARD_THRESHOLD = TOTAL_ROUNDS * POINTS_PER_ROUND * 0.90; // 90% of total possible points
@@ -966,7 +964,62 @@
         name: "Cerknica",
         lat: 45.79639, lon: 14.35806,
         coatOfArms: "./img/grb-cerknica.png"
-      }
+      },
+      {
+        name: "Lenart",
+        lat: 46.59542, lon: 15.86374,
+        coatOfArms: "./img/grb-lenart.png"
+      },
+      {
+        name: "Mozirje",
+        lat: 46.33940, lon: 14.96330,
+        coatOfArms: "./img/grb-mozirje.png"
+      },
+      {
+        name: "Ormož",
+        lat: 46.40752, lon: 16.15890,
+        coatOfArms: "./img/grb-ormoz.png"
+      },
+      {
+        name: "Pesnica pri Mariboru",
+        lat: 46.61000, lon: 15.67500,
+        coatOfArms: "./img/grb-pesnica.png"
+      },
+      {
+        name: "Radlje ob Dravi",
+        lat: 46.61443, lon: 15.22402,
+        coatOfArms: "./img/grb-radljeobdravi.png"
+      },
+      {
+        name: "Ruše",
+        lat: 46.53858, lon: 15.51540,
+        coatOfArms: "./img/grb-ruse.png"
+      },
+      {
+        name: "Šmarje pri Jelšah",
+        lat: 46.22722, lon: 15.51917,
+        coatOfArms: "./img/grb-smarjeprijelsah.png"
+      },
+      {
+        name: "Trebnje",
+        lat: 45.90420, lon: 15.02170,
+        coatOfArms: "./img/grb-trebnje.png"
+      },
+      {
+        name: "Tržič",
+        lat: 46.36670, lon: 14.31670,
+        coatOfArms: "./img/grb-trzic.png"
+      },
+      {
+        name: "Žalec",
+        lat: 46.250997, lon: 15.163939,
+        coatOfArms: "./img/grb-zalec.png"
+      },
+      {
+        name: "Bohinj",
+        lat: 46.27694, lon: 13.95361,
+        coatOfArms: "./img/grb-bohinj.png"
+      },
     ];
 
     const $ = id => document.getElementById(id);
@@ -1016,7 +1069,7 @@
       $("score").textContent = "0" + " / " + (TOTAL_ROUNDS * POINTS_PER_ROUND).toLocaleString();
       $("finalCard").style.display = "none";
 
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({top: 0, behavior: "smooth"});
       loadRound();
     }
 
@@ -1084,7 +1137,7 @@
 
       if (x < 0 || x > 1 || y < 0 || y > 1) return;
 
-      guess = { x, y };
+      guess = {x, y};
 
       $("submitGuess").disabled = false;
 
@@ -1293,7 +1346,7 @@
         showFinalCard();
       }
 
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({top: 0, behavior: "smooth"});
     }
 
     function returnToRules() {
@@ -1303,7 +1356,7 @@
       $("finish").style.display = "none";
       $("welcome").hidden = false;
 
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({top: 0, behavior: "smooth"});
     }
 
     $("map").addEventListener("click", pointOnMap);
